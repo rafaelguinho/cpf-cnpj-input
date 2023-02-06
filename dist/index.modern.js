@@ -3,23 +3,28 @@ import React from 'react';
 function clearCpfCnpj(value) {
   return value && value.replace(/[^0-9]/g, '');
 }
+const TYPES = {
+  CPF: '999.999.999-999',
+  CNPJ: '99.999.999/9999-99'
+};
+const DEFAULT_MASKS = {
+  CPF: '___.___.___-__',
+  CNPJ: '__.___.___/____-__'
+};
 const CpfCnpjInput = ({
   as,
   style,
-  name: _name = 'cpf_cnpj',
+  alwaysShowMask: _alwaysShowMask = false,
+  defaultMaskType: _defaultMaskType = 'CPF',
   value: _value = '',
   onChange,
-  type,
   ...rest
 }) => {
-  const TYPES = {
-    CPF: '999.999.999-999',
-    CNPJ: '99.999.999/9999-99'
-  };
   const MAX_LENGTH = clearCpfCnpj(TYPES.CNPJ).length;
   const stringValue = String(_value);
   const clearedValue = clearCpfCnpj(stringValue);
-  const maskedValue = clearedValue ? applyMask(clearedValue, TYPES[getMask(clearedValue)]) : clearedValue;
+  const maskedValue = clearedValue ? applyMask(clearedValue, TYPES[getMask(clearedValue)]) : _alwaysShowMask ? DEFAULT_MASKS[_defaultMaskType] : clearedValue;
+  console.log('clearedValue', clearedValue);
   function onLocalChange(ev) {
     const value = clearCpfCnpj(ev.target.value);
     const mask = getMask(value);
@@ -46,17 +51,15 @@ const CpfCnpjInput = ({
   const InnerInput = as;
   return React.createElement(React.Fragment, null, InnerInput ? React.createElement(InnerInput, Object.assign({}, rest, {
     style: style,
-    name: _name,
     label: 'CPF/CNPJ',
     "data-testid": 'cpf-cnpj',
-    type: type,
+    type: 'text',
     defaultValue: maskedValue,
     onChange: onLocalChange
   })) : React.createElement("input", Object.assign({}, rest, {
     style: style,
-    name: _name,
     "data-testid": 'cpf-cnpj',
-    type: type,
+    type: 'text',
     defaultValue: maskedValue,
     onChange: onLocalChange
   })));

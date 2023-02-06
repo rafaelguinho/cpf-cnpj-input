@@ -3,6 +3,8 @@ import React from 'react'
 type CpfCnpjInputProps = {
   as?: React.FC<any & InputProps>
   style?: React.CSSProperties
+  alwaysShowMask?: boolean
+  defaultMaskType?: 'CPF' | 'CNPJ'
 }
 
 type InputProps = JSX.IntrinsicElements['input']
@@ -19,19 +21,25 @@ export function isCnpj(value: string) {
   return value.length === 14
 }
 
+const TYPES = {
+  CPF: '999.999.999-999',
+  CNPJ: '99.999.999/9999-99'
+}
+
+const DEFAULT_MASKS = {
+  CPF: '___.___.___-__',
+  CNPJ: '__.___.___/____-__'
+}
+
 const CpfCnpjInput: React.FC<CpfCnpjInputProps & InputProps> = ({
   as,
   style,
-  name = 'cpf_cnpj',
+  alwaysShowMask = false,
+  defaultMaskType = 'CPF',
   value = '',
   onChange,
-  type,
   ...rest
 }: CpfCnpjInputProps & InputProps) => {
-  const TYPES = {
-    CPF: '999.999.999-999',
-    CNPJ: '99.999.999/9999-99'
-  }
   const MAX_LENGTH = clearCpfCnpj(TYPES.CNPJ).length
 
   const stringValue = String(value)
@@ -39,7 +47,11 @@ const CpfCnpjInput: React.FC<CpfCnpjInputProps & InputProps> = ({
   const clearedValue = clearCpfCnpj(stringValue)
   const maskedValue = clearedValue
     ? applyMask(clearedValue, TYPES[getMask(clearedValue)])
+    : alwaysShowMask
+    ? DEFAULT_MASKS[defaultMaskType]
     : clearedValue
+
+  console.log('clearedValue', clearedValue)
 
   function onLocalChange(ev: React.ChangeEvent<HTMLInputElement>) {
     const value = clearCpfCnpj(ev.target.value)
@@ -83,10 +95,9 @@ const CpfCnpjInput: React.FC<CpfCnpjInputProps & InputProps> = ({
         <InnerInput
           {...rest}
           style={style}
-          name={name}
           label='CPF/CNPJ'
           data-testid={'cpf-cnpj'}
-          type={type}
+          type='text'
           defaultValue={maskedValue}
           onChange={onLocalChange}
         />
@@ -94,9 +105,8 @@ const CpfCnpjInput: React.FC<CpfCnpjInputProps & InputProps> = ({
         <input
           {...rest}
           style={style}
-          name={name}
           data-testid={'cpf-cnpj'}
-          type={type}
+          type='text'
           defaultValue={maskedValue}
           onChange={onLocalChange}
         />

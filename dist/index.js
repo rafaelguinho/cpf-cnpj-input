@@ -15,28 +15,34 @@ function _objectWithoutPropertiesLoose(source, excluded) {
   return target;
 }
 
-var _excluded = ["as", "style", "name", "value", "onChange", "type"];
+var _excluded = ["as", "style", "alwaysShowMask", "defaultMaskType", "value", "onChange"];
 function clearCpfCnpj(value) {
   return value && value.replace(/[^0-9]/g, '');
 }
+var TYPES = {
+  CPF: '999.999.999-999',
+  CNPJ: '99.999.999/9999-99'
+};
+var DEFAULT_MASKS = {
+  CPF: '___.___.___-__',
+  CNPJ: '__.___.___/____-__'
+};
 var CpfCnpjInput = function CpfCnpjInput(_ref) {
   var as = _ref.as,
     style = _ref.style,
-    _ref$name = _ref.name,
-    name = _ref$name === void 0 ? 'cpf_cnpj' : _ref$name,
+    _ref$alwaysShowMask = _ref.alwaysShowMask,
+    alwaysShowMask = _ref$alwaysShowMask === void 0 ? false : _ref$alwaysShowMask,
+    _ref$defaultMaskType = _ref.defaultMaskType,
+    defaultMaskType = _ref$defaultMaskType === void 0 ? 'CPF' : _ref$defaultMaskType,
     _ref$value = _ref.value,
     value = _ref$value === void 0 ? '' : _ref$value,
     onChange = _ref.onChange,
-    type = _ref.type,
     rest = _objectWithoutPropertiesLoose(_ref, _excluded);
-  var TYPES = {
-    CPF: '999.999.999-999',
-    CNPJ: '99.999.999/9999-99'
-  };
   var MAX_LENGTH = clearCpfCnpj(TYPES.CNPJ).length;
   var stringValue = String(value);
   var clearedValue = clearCpfCnpj(stringValue);
-  var maskedValue = clearedValue ? applyMask(clearedValue, TYPES[getMask(clearedValue)]) : clearedValue;
+  var maskedValue = clearedValue ? applyMask(clearedValue, TYPES[getMask(clearedValue)]) : alwaysShowMask ? DEFAULT_MASKS[defaultMaskType] : clearedValue;
+  console.log('clearedValue', clearedValue);
   function onLocalChange(ev) {
     var value = clearCpfCnpj(ev.target.value);
     var mask = getMask(value);
@@ -63,17 +69,15 @@ var CpfCnpjInput = function CpfCnpjInput(_ref) {
   var InnerInput = as;
   return React.createElement(React.Fragment, null, InnerInput ? React.createElement(InnerInput, Object.assign({}, rest, {
     style: style,
-    name: name,
     label: 'CPF/CNPJ',
     "data-testid": 'cpf-cnpj',
-    type: type,
+    type: 'text',
     defaultValue: maskedValue,
     onChange: onLocalChange
   })) : React.createElement("input", Object.assign({}, rest, {
     style: style,
-    name: name,
     "data-testid": 'cpf-cnpj',
-    type: type,
+    type: 'text',
     defaultValue: maskedValue,
     onChange: onLocalChange
   })));

@@ -1,7 +1,7 @@
 {
-  "name": "cpf-cnpj-input",
+  "name": "react-cpf-cnpj-input-field",
   "version": "1.0.0",
-  "description": "Made with create-react-library",
+  "description": "A React component that creates an input with dynamic mask for CPF or CNPJ documents",
   "author": "rafaelguinho",
   "license": "MIT",
   "repository": "rafaelguinho/cpf-cnpj-input",
