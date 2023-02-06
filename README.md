@@ -1,26 +1,31 @@
-# cpf-cnpj-input
+# react-cpf-cnpj-input-field
 
-> Made with create-react-library
+> A React input component with dynamic mask for Brazilian CPF or CNPJ documents
 
 [![NPM](https://img.shields.io/npm/v/cpf-cnpj-input.svg)](https://www.npmjs.com/package/cpf-cnpj-input) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+
+
+# Table of Contents
+* [Installation](#install)
+* [Usage](#usage)
+* [Properties](#properties)
 
 ## Install
 
 ```bash
-npm install --save cpf-cnpj-input
+npm install --save react-cpf-cnpj-input-field
 ```
 
 ## Usage
 
 ```tsx
-import React, { Component } from 'react'
+import React from 'react'
 
-import MyComponent from 'cpf-cnpj-input'
-import 'cpf-cnpj-input/dist/index.css'
+import CpfCnpjInput from 'react-cpf-cnpj-input-field'
 
-class Example extends Component {
+const App = () => {
   render() {
-    return <MyComponent />
+    return <CpfCnpjInput />
   }
 }
 ```
