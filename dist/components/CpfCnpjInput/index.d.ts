@@ -9,5 +9,5 @@ declare type InputProps = JSX.IntrinsicElements['input'];
 export declare function clearCpfCnpj(value: string): string;
 export declare function isCpf(value: string): boolean;
 export declare function isCnpj(value: string): boolean;
-declare const CpfCnpjInput: React.FC<CpfCnpjInputProps & InputProps>;
+declare const CpfCnpjInput: React.FC<CpfCnpjInputProps & InputProps & any>;
 export default CpfCnpjInput;

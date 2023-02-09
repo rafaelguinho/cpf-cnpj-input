@@ -31,7 +31,7 @@ const DEFAULT_MASKS = {
   CNPJ: '__.___.___/____-__'
 }
 
-const CpfCnpjInput: React.FC<CpfCnpjInputProps & InputProps> = ({
+const CpfCnpjInput: React.FC<CpfCnpjInputProps & InputProps & any> = ({
   as,
   style,
   alwaysShowMask = false,
@@ -50,8 +50,6 @@ const CpfCnpjInput: React.FC<CpfCnpjInputProps & InputProps> = ({
     : alwaysShowMask
     ? DEFAULT_MASKS[defaultMaskType]
     : clearedValue
-
-  console.log('clearedValue', clearedValue)
 
   function onLocalChange(ev: React.ChangeEvent<HTMLInputElement>) {
     const value = clearCpfCnpj(ev.target.value)
@@ -87,12 +85,12 @@ const CpfCnpjInput: React.FC<CpfCnpjInputProps & InputProps> = ({
     return result
   }
 
-  const InnerInput = as
+  const CustomInput = as
 
   return (
     <React.Fragment>
-      {InnerInput ? (
-        <InnerInput
+      {CustomInput ? (
+        <CustomInput
           {...rest}
           style={style}
           label='CPF/CNPJ'

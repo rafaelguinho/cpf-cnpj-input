@@ -24,7 +24,6 @@ const CpfCnpjInput = ({
   const stringValue = String(_value);
   const clearedValue = clearCpfCnpj(stringValue);
   const maskedValue = clearedValue ? applyMask(clearedValue, TYPES[getMask(clearedValue)]) : _alwaysShowMask ? DEFAULT_MASKS[_defaultMaskType] : clearedValue;
-  console.log('clearedValue', clearedValue);
   function onLocalChange(ev) {
     const value = clearCpfCnpj(ev.target.value);
     const mask = getMask(value);
@@ -48,8 +47,8 @@ const CpfCnpjInput = ({
     });
     return result;
   }
-  const InnerInput = as;
-  return React.createElement(React.Fragment, null, InnerInput ? React.createElement(InnerInput, Object.assign({}, rest, {
+  const CustomInput = as;
+  return React.createElement(React.Fragment, null, CustomInput ? React.createElement(CustomInput, Object.assign({}, rest, {
     style: style,
     label: 'CPF/CNPJ',
     "data-testid": 'cpf-cnpj',
