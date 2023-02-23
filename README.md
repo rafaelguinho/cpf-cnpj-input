@@ -4,11 +4,12 @@
 
 [![NPM](https://img.shields.io/npm/v/cpf-cnpj-input.svg)](https://www.npmjs.com/package/cpf-cnpj-input) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
-
 # Table of Contents
-* [Installation](#install)
-* [Usage](#usage)
-* [Properties](#properties)
+
+- [Installation](#install)
+- [Usage](#usage)
+- [Usage with React Hook Form](#Usage with React Hook Form)
+- [Properties](#properties)
 
 ## Install
 
@@ -29,6 +30,32 @@ const App = () => {
   }
 }
 ```
+
+## Usage with React Hook Form
+
+```tsx
+<Controller
+  control={control}
+  name='cpf_cnpj'
+  render={({ field: { onChange, onBlur, value, name } }) => (
+    <CpfCnpjInput
+      onBlur={onBlur}
+      onChange={onChange}
+      checked={value}
+      name={name}
+    />
+  )}
+/>
+```
+
+### Properties
+
+Name | Description | Default
+---|---|---
+style | Custom styles | undefined
+alwaysShowMask | Define whether to always show the mask | false
+defaultMaskType | Accepted ("CPF", "CNPJ") | "CPF"
+as | You can provide a custom input | undefined
 
 ## License
 
