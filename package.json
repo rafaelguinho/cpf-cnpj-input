@@ -1,6 +1,6 @@
 {
   "name": "react-cpf-cnpj-input-field",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A React input component with dynamic mask for Brazilian CPF or CNPJ documents",
   "author": "rafaelguinho",
   "license": "MIT",
