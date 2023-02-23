@@ -9,7 +9,6 @@ export default function WithReactHookForm() {
   const value = watch('cpf_cnpj')
 
   return (
-    /* "handleSubmit" will validate your inputs before invoking "onSubmit" */
     <>
       <h1>With react-hook-form</h1>
       <form onSubmit={handleSubmit(onSubmit)}>

@@ -2,7 +2,7 @@
 
 > A React input component with dynamic mask for Brazilian CPF or CNPJ documents
 
-[![NPM](https://img.shields.io/npm/v/cpf-cnpj-input.svg)](https://www.npmjs.com/package/cpf-cnpj-input) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+[![NPM](https://img.shields.io/npm/v/cpf-cnpj-input.svg)](https://www.npmjs.com/package/react-cpf-cnpj-input-field)
 
 # Table of Contents
 
