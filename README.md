@@ -8,7 +8,6 @@
 
 - [Installation](#install)
 - [Usage](#usage)
-- [Usage with React Hook Form](#Usage with React Hook Form)
 - [Properties](#properties)
 
 ## Install
